@@ -1,0 +1,68 @@
+data = {}
+
+
+def tambah():
+    nama = input("Masukkan nama: ")
+    tugas = float(input("Nilai Tugas: "))
+    uts = float(input("Nilai UTS: "))
+    uas = float(input("Nilai UAS: "))
+    akhir = tugas*0.3 + uts*0.35 + uas*0.35
+    data[nama] = [tugas, uts, uas, akhir]
+    print(f"Data {nama} berhasil ditambahkan!\n")
+
+
+def tampilkan():
+    if not data:
+        print("Belum ada data.\n")
+        return
+    print("="*50)
+    print(f"{'Nama':10} {'Tugas':6} {'UTS':6} {'UAS':6} {'Akhir':6}")
+    print("-"*50)
+    for nama, nilai in data.items():
+        print(f"{nama:10} {nilai[0]:6} {nilai[1]:6} {nilai[2]:6} {nilai[3]:6.2f}")
+    print("="*50 + "\n")
+
+
+def hapus(nama):
+    if nama in data:
+        del data[nama]
+        print(f"Data {nama} berhasil dihapus!\n")
+    else:
+        print("Nama tidak ditemukan.\n")
+
+def ubah(nama):
+    if nama in data:
+        print("Masukkan data baru:")
+        tugas = float(input("Nilai Tugas: "))
+        uts = float(input("Nilai UTS: "))
+        uas = float(input("Nilai UAS: "))
+        akhir = tugas*0.3 + uts*0.35 + uas*0.35
+        data[nama] = [tugas, uts, uas, akhir]
+        print(f"Data {nama} berhasil diubah!\n")
+    else:
+        print("Nama tidak ditemukan.\n")
+
+while True:
+    print("=== MENU ===")
+    print("1. Tambah Data")
+    print("2. Tampilkan Data")
+    print("3. Hapus Data")
+    print("4. Ubah Data")
+    print("5. Keluar")
+    pilih = input("Pilih menu: ")
+
+    if pilih == "1":
+        tambah()
+    elif pilih == "2":
+        tampilkan()
+    elif pilih == "3":
+        nama = input("Masukkan nama yang akan dihapus: ")
+        hapus(nama)
+    elif pilih == "4":
+        nama = input("Masukkan nama yang akan diubah: ")
+        ubah(nama)
+    elif pilih == "5":
+        print("Program selesai.")
+        break
+    else:
+        print("Pilihan salah!\n")
